@@ -46,15 +46,18 @@ Route::prefix("bills")->group(function () {
     Route::post('/', 'App\Http\Controllers\BillController@store');
     Route::get('/paginate', 'App\Http\Controllers\BillController@paginate');
     Route::get('/delivery', 'App\Http\Controllers\BillController@delivery');
+    Route::get('/morts', 'App\Http\Controllers\BillController@mortsData');
     Route::post('/order/{order}', 'App\Http\Controllers\BillController@orderDone');
     Route::get('{bill}', 'App\Http\Controllers\BillController@ajaxOne');
+    Route::post("reports", "App\Http\Controllers\BillController@report");
     Route::delete('{bill}', 'App\Http\Controllers\BillController@destroy');
+    Route::delete('morts/{mort}', 'App\Http\Controllers\BillController@mortDestroy');
     Route::patch('{bill}', 'App\Http\Controllers\BillController@restore');
 });
 Route::prefix("expenses")->group(function () {
     Route::post('/', 'App\Http\Controllers\ExpensesController@store');
     Route::get('paginate', 'App\Http\Controllers\ExpensesController@ajaxAll');
-
+    Route::post("reports", "App\Http\Controllers\ExpensesController@report");
     Route::get('{expenses}', 'App\Http\Controllers\ExpensesController@ajaxOne');
     Route::post('{expenses}', 'App\Http\Controllers\ExpensesController@update');
     Route::delete('{expenses}', 'App\Http\Controllers\ExpensesController@destroy');
@@ -74,3 +77,4 @@ Route::prefix("staffs")->group(function () {
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::get("/reports/{reports}", "App\Http\Controllers\ExpensesController@report");

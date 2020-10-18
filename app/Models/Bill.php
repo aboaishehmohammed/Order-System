@@ -10,9 +10,13 @@ class Bill extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ["delivery", "sale", "category_id", "delivery_time", "order_done"];
+    protected $fillable = ["delivery", "sale", "category_id", "delivery_time", "order_done","extra_name","extra_price"];
     protected $appends = ['deliveryData'];
     protected $hidden = ['delivery'];
+    public function billMorts()
+    {
+        return $this->hasOne(Mort::class);
+    }
 
     public function billProducts()
     {
