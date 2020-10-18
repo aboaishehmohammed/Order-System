@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Staff;
+use App\Models\staffSalary;
 use Illuminate\Http\Request;
 
 class StaffController extends Controller
@@ -13,49 +14,59 @@ class StaffController extends Controller
 
         $validatedData = $request->validate([
             'name' => 'required|max:255',
-            'sallery' => 'required|numeric|min:0'
+            'salary' => 'required|numeric|min:0'
         ]);
         return Staff::create([
             "name" => $request->name,
-            "sallery" => $request->sallery
+            "salary" => $request->salary
         ]);
 
     }
 
     //
-    public function update(Request $request, $sallery)
+    public function update(Request $request, $staff)
     {
+
         $validatedData = $request->validate([
             'name' => 'required|max:255',
-            'sallery' => 'required|numeric|min:0'
+            'salary' => 'required|numeric|min:0'
 
         ]);
-        $sallery = Staff::findorfail($sallery);
-        $sallery->name = $request->name;
-        $sallery->price = $request->sallery;
-        $sallery->update();
+        $staff = Staff::findorfail($staff);
+        $staff->name=$request->name;
+        $staff->salary=$request->salary;
+        $staff->update();
+        return $staff;
+
     }
 
-    public function destroy($sallery)
+    public function destroy($staff)
     {
-        Staff::findorfail($sallery)->delete();
+        Staff::findorfail($staff)->delete();
     }
 
-    public function restore($sallery)
+    public function restore($staff)
     {
-        Staff::onlyTrashed()->findOrFail($sallery)->restore();
+        Staff::onlyTrashed()->findOrFail($staff)->restore();
     }
 
-    public function ajaxOne($sallery)
+    public function ajaxOne($staff)
     {
-        $sallery = Staff::findorfail($sallery);
-        return $sallery;
+        $staff = Staff::findorfail($staff);
+        return $staff;
     }
 
     public function ajaxAll()
     {
-        $sallery = Staff::all();
-        return $sallery;
+        return Staff::all();
     }
+
     //
+//    public function salary(Request $request, $staff){
+//        $staff=Staff::findorfail($staff);
+//        $staff->staffSalary()->update([
+//        "total_salary"=>$request->total_salary
+//    ]);
+//        return $staff;
+//    }
 }

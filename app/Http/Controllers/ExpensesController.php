@@ -27,11 +27,13 @@ class ExpensesController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required|max:255',
+            'price' => 'required'
         ]);
         $expenses = Expenses::findorfail($expenses);
-        $expenses->name = $request->name;
-        $expenses->price = $request->price;
+        $expenses->name=$request->name;
+        $expenses->price=$request->price;
         $expenses->update();
+        return $expenses;
     }
 
     public function destroy($expenses)
@@ -52,7 +54,7 @@ class ExpensesController extends Controller
 
     public function ajaxAll()
     {
-        $expenses = Expenses::all();
+        $expenses = Expenses::paginate(10);
         return $expenses;
     }
     //

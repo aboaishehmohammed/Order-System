@@ -17,6 +17,11 @@ class BillProduct extends Model
 
     }
 
+    public function subProduct()
+    {
+        return $this->belongsTo(SubProduct::class);
+    }
+
     public function bill()
     {
         return $this->belongsTo(Bill::class);

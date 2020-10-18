@@ -16,7 +16,7 @@ class CreateStaffTable extends Migration
         Schema::create('staff', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->unsignedDouble('sallery');
+            $table->unsignedDouble('salary');
             $table->softDeletes();
             $table->timestamps();
         });

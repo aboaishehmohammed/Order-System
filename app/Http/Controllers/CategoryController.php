@@ -46,9 +46,12 @@ class CategoryController extends Controller
         $category = Category::findorfail($category);
         return $category;
     }
+
     public function ajaxAll()
     {
-        $category = Category::all();
+        $category = Category::with([
+            "products.subProduct"
+        ])->get();
         return $category;
     }
 }

@@ -24,7 +24,7 @@ class SubProductController extends Controller
         $data = $request->all();
 
         $subProducts->products()->sync($data['products']);
-
+        return $subProducts;
     }
 
     //
@@ -34,8 +34,9 @@ class SubProductController extends Controller
             'name' => 'required|max:255',
         ]);
         $subProduct = SubProduct::findorfail($sub);
-        $subProduct->p_name = $request->name;
+        $subProduct->p_name=$request->name;
         $subProduct->update();
+        return $subProduct;
     }
 
     public function destroy($sub)

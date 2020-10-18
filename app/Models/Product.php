@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
-    protected $fillable = ["p_name", "price","category_id"];
+    protected $fillable = ["p_name", "price", "category_id"];
     use SoftDeletes;
 
     public function category()
@@ -20,4 +20,11 @@ class Product extends Model
     {
         return $this->belongsToMany(SubProduct::class, "product_sub_product");
     }
+
+    public function sales()
+    {
+        return $this->hasMany(BillProduct::class);
+    }
+
+
 }

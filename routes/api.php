@@ -25,8 +25,9 @@ Route::prefix("categories")->group(function () {
 });
 Route::prefix("products")->group(function () {
     Route::post('/', 'App\Http\Controllers\productController@store');
-    Route::get('{product}', 'App\Http\Controllers\productController@ajaxOne');
     Route::get('/', 'App\Http\Controllers\productController@ajaxAll');
+    Route::get('{product}', 'App\Http\Controllers\productController@ajaxOne');
+    Route::get('{product_id}/paginate', 'App\Http\Controllers\BillController@getBillsForProductId');
     Route::post('{product}', 'App\Http\Controllers\productController@update');
     Route::delete('{product}', 'App\Http\Controllers\productController@destroy');
     Route::patch('{product}', 'App\Http\Controllers\productController@restore');
@@ -43,18 +44,31 @@ Route::prefix("sub-products")->group(function () {
 });
 Route::prefix("bills")->group(function () {
     Route::post('/', 'App\Http\Controllers\BillController@store');
+    Route::get('/paginate', 'App\Http\Controllers\BillController@paginate');
+    Route::get('/delivery', 'App\Http\Controllers\BillController@delivery');
+    Route::post('/order/{order}', 'App\Http\Controllers\BillController@orderDone');
     Route::get('{bill}', 'App\Http\Controllers\BillController@ajaxOne');
-    Route::get('/', 'App\Http\Controllers\BillController@ajaxAll');
     Route::delete('{bill}', 'App\Http\Controllers\BillController@destroy');
     Route::patch('{bill}', 'App\Http\Controllers\BillController@restore');
 });
 Route::prefix("expenses")->group(function () {
     Route::post('/', 'App\Http\Controllers\ExpensesController@store');
+    Route::get('paginate', 'App\Http\Controllers\ExpensesController@ajaxAll');
+
     Route::get('{expenses}', 'App\Http\Controllers\ExpensesController@ajaxOne');
-    Route::get('/', 'App\Http\Controllers\ExpensesController@ajaxAll');
     Route::post('{expenses}', 'App\Http\Controllers\ExpensesController@update');
     Route::delete('{expenses}', 'App\Http\Controllers\ExpensesController@destroy');
     Route::patch('{expenses}', 'App\Http\Controllers\ExpensesController@restore');
+
+});
+Route::prefix("staffs")->group(function () {
+    Route::post('/', 'App\Http\Controllers\StaffController@store');
+    Route::get('/', 'App\Http\Controllers\StaffController@ajaxAll');
+    Route::get('{staff}', 'App\Http\Controllers\StaffController@ajaxOne');
+    Route::post('{staff}', 'App\Http\Controllers\StaffController@update');
+    Route::post('/salary/{staff}', 'App\Http\Controllers\StaffController@salary');
+    Route::delete('{staff}', 'App\Http\Controllers\StaffController@destroy');
+    Route::patch('{staff}', 'App\Http\Controllers\StaffController@restore');
 
 });
 Route::middleware('auth:api')->get('/user', function (Request $request) {

@@ -9,10 +9,23 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Bill extends Model
 {
     use SoftDeletes;
-    protected $fillable = ["delivery", "sale", "category_id"];
+
+    protected $fillable = ["delivery", "sale", "category_id", "delivery_time", "order_done"];
+    protected $appends = ['deliveryData'];
+    protected $hidden = ['delivery'];
 
     public function billProducts()
     {
         return $this->hasMany(BillProduct::class);
     }
+
+    public function getDeliveryDataAttribute()
+    {
+        if ($this->delivery != null) {
+            return json_decode($this->delivery);
+        } else {
+            return null;
+        }
+    }
+
 }
