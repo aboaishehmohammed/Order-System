@@ -18,7 +18,7 @@ class CreateBillsTable extends Migration
             $table->json('delivery');
             $table->unsignedDouble('sale');
             $table->timestamp('delivery_time');
-            $table->tinyInteger('extra_price');
+
             $table->string('extra_name');
             $table->unsignedDouble('extra_price');
             $table->softDeletes();
