@@ -64,6 +64,19 @@ Route::prefix("expenses")->group(function () {
     Route::patch('{expenses}', 'App\Http\Controllers\ExpensesController@restore');
 
 });
+Route::prefix("expenses-categories")->group(function () {
+    Route::post('/', 'App\Http\Controllers\ExpensesCategoryController@store');
+    Route::get('/', 'App\Http\Controllers\ExpensesCategoryController@ajaxAll');
+    Route::get('{category}/paginate', 'App\Http\Controllers\ExpensesCategoryController@getExpensesOfCategory');
+    Route::post('{category}/paginate', 'App\Http\Controllers\ExpensesCategoryController@getExpensesOfCategory');
+
+    Route::get('{category}', 'App\Http\Controllers\ExpensesCategoryController@ajaxOne');
+    Route::post('{category}/reports', 'App\Http\Controllers\ExpensesCategoryController@getExpensesOfCategoryReports');
+    Route::post('{category}', 'App\Http\Controllers\ExpensesCategoryController@update');
+    Route::delete('{category}', 'App\Http\Controllers\ExpensesCategoryController@destroy');
+    Route::patch('{category}', 'App\Http\Controllers\ExpensesCategoryController@restore');
+
+});
 Route::prefix("staffs")->group(function () {
     Route::post('/', 'App\Http\Controllers\StaffController@store');
     Route::get('/', 'App\Http\Controllers\StaffController@ajaxAll');

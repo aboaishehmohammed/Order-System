@@ -14,13 +14,18 @@ class ExpensesController extends Controller
 
         $validatedData = $request->validate([
             'name' => 'required|max:255',
-            'price' => 'required|numeric|min:0'
+            'price' => 'required|numeric|min:0',
+            'expenses_category_id' => 'required|exists:expenses_categories,id'
+
         ]);
-        return Expenses::create([
+        $expenses= Expenses::create([
             "name" => $request->name,
-            "price" => $request->price
+            "price" => $request->price,
+            "expenses_category_id" => $request->expenses_category_id
+
         ]);
 
+        return Expenses::with("expensesCategory")->findOrFail($expenses->id);
     }
 
     //
@@ -28,13 +33,16 @@ class ExpensesController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required|max:255',
-            'price' => 'required'
+            'price' => 'required',
+            'expenses_category_id' => 'required|exists:expenses_categories,id'
+
         ]);
         $expenses = Expenses::findorfail($expenses);
         $expenses->name=$request->name;
         $expenses->price=$request->price;
+        $expenses->expenses_category_id=$request->expenses_category_id;
         $expenses->update();
-        return $expenses;
+        return Expenses::with("expensesCategory")->findOrFail($expenses->id);
     }
 
     public function destroy($expenses)
@@ -55,7 +63,7 @@ class ExpensesController extends Controller
 
     public function ajaxAll()
     {
-        $expenses = Expenses::paginate(10);
+        $expenses = Expenses::orderBy("created_at", 'desc')->paginate(30);
         return $expenses;
     }
     public function report(Request $request){
@@ -86,5 +94,7 @@ return $expenses->sum(DB::raw("price"));
 
 
     }
+
+
     //
 }

@@ -15,7 +15,6 @@ class SubProductController extends Controller
             'name' => 'required|max:255',
             "products" => "array|required",
             "products.*" => "required|exists:products,id",
-
         ]);
 
         $subProducts = SubProduct::create([
@@ -57,7 +56,7 @@ class SubProductController extends Controller
 
     public function ajaxAll()
     {
-        $subProduct = SubProduct::all();
+        $subProduct = SubProduct::with(['products'])->get();
         return $subProduct;
     }
 

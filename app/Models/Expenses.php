@@ -8,7 +8,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Expenses extends Model
 {
-    protected $fillable = ["name","price"];
+    protected $fillable = ["name","price","expenses_category_id"];
 
     use SoftDeletes;
+    public function expensesCategory()
+    {
+        return $this->belongsTo(ExpensesCategory::class);
+    }
 }
