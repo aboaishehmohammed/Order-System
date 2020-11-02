@@ -6,13 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Expenses extends Model
-{
-    protected $fillable = ["name","price","expenses_category_id"];
-
+class ExpensesCategory extends Model
+{    protected $fillable = ["name"];
     use SoftDeletes;
-    public function expensesCategory()
+
+    public function expenses()
     {
-        return $this->belongsTo(ExpensesCategory::class);
+        return $this->hasMany(Expenses::class);
     }
 }
