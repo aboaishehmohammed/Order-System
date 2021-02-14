@@ -22,7 +22,7 @@
     <list default="true" id="52808688-54b9-4d56-a810-858599bf4945" name="Default Changelist" comment="bill migration fix">
       <changelist_data name="ammar" email="" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_10_06_064454_create_bills_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_10_06_064454_create_bills_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SubProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SubProductController.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -174,7 +174,7 @@
       <method v="2" />
     </configuration>
   </component>
-  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -200,11 +200,26 @@
       <workItem from="1603000870026" duration="13899000" />
       <workItem from="1603032804213" duration="2767000" />
       <workItem from="1603570274153" duration="917000" />
+      <workItem from="1604340835856" duration="69000" />
+      <workItem from="1604399658076" duration="11000" />
+      <workItem from="1604822700893" duration="1208000" />
+      <workItem from="1604913247248" duration="700000" />
+      <workItem from="1605105190239" duration="1341000" />
+      <workItem from="1605177807140" duration="345000" />
+      <workItem from="1605352870309" duration="3444000" />
+      <workItem from="1605423628426" duration="626000" />
+      <workItem from="1605424576903" duration="14000" />
+      <workItem from="1605430409920" duration="33000" />
+      <workItem from="1605687552811" duration="786000" />
+      <workItem from="1605688750791" duration="2123000" />
+      <workItem from="1605691920250" duration="1755000" />
+      <workItem from="1606138399085" duration="7000" />
+      <workItem from="1606307000308" duration="334000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="2" />
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">

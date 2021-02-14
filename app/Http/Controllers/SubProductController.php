@@ -21,7 +21,6 @@ class SubProductController extends Controller
             "p_name" => $request->name,
         ]);
         $data = $request->all();
-
         $subProducts->products()->sync($data['products']);
         return $subProducts;
     }
